@@ -13,7 +13,7 @@ public class ProdutoService {
 
     private  static List<ItemCesta> cestaList = new ArrayList<>();
 
-    public static Produto buscarProduto(String cod) {
+    /* public static Produto buscarProduto(String cod) {
 
         for (int i = 0; i < produtoList.size(); i++) {
             //Comparando cada produto
@@ -23,7 +23,13 @@ public class ProdutoService {
             }
         }
         return null;
+    }*/
+
+    public static Produto buscarProduto(String cod) {
+            new Service().execute();
+         return null;
     }
+
 
     public static void carregarProdutos() {
 
