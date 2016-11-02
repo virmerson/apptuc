@@ -1,5 +1,11 @@
 package br.com.fabricadeprogramador.tuc;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +14,11 @@ import java.util.List;
  */
 public class ProdutoService {
 
-  private static List<Produto> produtoList = new ArrayList<>();
+    private static List<Produto> produtoList = new ArrayList<>();
 
+    private static Produto produto;
 
-    private  static List<ItemCesta> cestaList = new ArrayList<>();
+    private static List<ItemCesta> cestaList = new ArrayList<>();
 
     /* public static Produto buscarProduto(String cod) {
 
@@ -26,8 +33,22 @@ public class ProdutoService {
     }*/
 
     public static Produto buscarProduto(String cod) {
-            new Service().execute();
-         return null;
+        try {
+
+            //SPRING ANDROID
+            final String url = "http://192.168.25.17:8080/produtos/" + cod;
+            //Cria um objeto que permite requests no padrao REst
+            RestTemplate restTemplate = new RestTemplate();
+           //Configura o Gerenciado de Json (Converson)
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+            //faz o request para web e pega o retorno já convertido em object
+            Produto produto = restTemplate.getForObject(url, Produto.class);
+            return produto;
+        } catch (Exception e) {
+            Log.e("MainActivity", e.getMessage(), e);
+        }
+        return null;
     }
 
 
@@ -40,15 +61,24 @@ public class ProdutoService {
 
     }
 
-    public static void adicionarCesta(ItemCesta itemCesta){
+    public static void adicionarCesta(ItemCesta itemCesta) {
         cestaList.add(itemCesta);
     }
-    public static void removerCesta(ItemCesta itemCesta){
+
+    public static void removerCesta(ItemCesta itemCesta) {
         cestaList.remove(itemCesta);
     }
 
     public static List<ItemCesta> getCestaList() {
         return cestaList;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
 
