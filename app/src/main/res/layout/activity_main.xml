@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/etCodigoBarra"
+        android:inputType="text"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
@@ -78,7 +79,15 @@
         android:id="@+id/btnMinhaCesta"
         android:src="@drawable/cart"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/btnAddCesta" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBarCode"
+        android:layout_alignBottom="@+id/btnMinhaCesta"
+        android:layout_toStartOf="@+id/btnMinhaCesta"
+        android:src="@drawable/barcode" />
 
 
 </RelativeLayout>

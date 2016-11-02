@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.barcode.Barcode;
+
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +25,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
 
-
+    public static final int REQUEST_BARCODE =10 ;
     @Bind(R.id.etCodigoBarra)
     EditText codigoBarra;
 
@@ -44,8 +46,29 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
     Produto produtoSelecionado;
 
+    @OnClick(R.id.btnBarCode)
+   public void lerCodigoBarra(){
+        Intent irParaCodigoBarra =  new Intent(this,ScanBarCodeActivity.class);
+        startActivityForResult(irParaCodigoBarra,REQUEST_BARCODE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==REQUEST_BARCODE){
+
+            //Pegar o codigo
+            Barcode barcode = data.getParcelableExtra("barcode");
+            codigoBarra.setText( barcode.displayValue );
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @OnClick(R.id.btnBuscar)
     public void buscar() {
