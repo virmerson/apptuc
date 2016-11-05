@@ -79,15 +79,23 @@
         android:id="@+id/btnMinhaCesta"
         android:src="@drawable/cart"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/btnAddCesta" />
+        android:layout_toEndOf="@+id/btnBarCode" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnBarCode"
-        android:layout_alignBottom="@+id/btnMinhaCesta"
-        android:layout_toStartOf="@+id/btnMinhaCesta"
-        android:src="@drawable/barcode" />
+        android:src="@drawable/barcode"
+        android:layout_alignTop="@+id/btnMinhaCesta"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMap"
+        android:src="@drawable/maps"
+        android:layout_alignTop="@+id/btnBarCode"
+        android:layout_toStartOf="@+id/btnBarCode" />
 
 
 </RelativeLayout>

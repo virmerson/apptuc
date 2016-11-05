@@ -58,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btnMap)
+    public void irParaMapa(){
+        Intent irParaMapa =  new Intent(this,MapActivity.class);
+        startActivity(irParaMapa);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==REQUEST_BARCODE){
